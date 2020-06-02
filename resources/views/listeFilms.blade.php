@@ -16,7 +16,7 @@
                     <select onchange="window.location.href = this.value">
                         <option value="{{ route('films.index') }}" @unless($laCategorie) selected @endunless>Toutes catégories</option>
                         @foreach($categories as $categorie)
-                            <option value="{{ route('films.categorie', $categorie->libelle) }}" {{ $laCategorie == $categorie->libelle ? 'selected' : '' }}>{{ $categorie->libelle }}</option>
+                            <option value="{{ route('films.categorie', $categorie->id) }}" {{ $laCategorie == $categorie->id ? 'selected' : '' }}>{{ $categorie->libelle }}</option>
                         @endforeach
                     </select>
                 </div>

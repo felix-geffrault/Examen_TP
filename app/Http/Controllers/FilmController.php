@@ -18,9 +18,19 @@ class FilmController extends Controller
     public function index($laCategorie = null)
     {
         //
-        $query = $laCategorie ? Genre::where('libelle',"$laCategorie")->firstOrFail()->films() : Film::query();
-        $lesFilms = $query->get();
+        //Pose problème
+        //$query = $laCategorie ? Categorie::where('libelle',"$laCategorie")->firstOrFail()->films() : Film::query();
         $categories = Categorie::all();
+        if($laCategorie){
+            $films = Film::all();
+            $lesFilms = array();
+            foreach ($films as $film){
+                if($film->id_categorie == $laCategorie){
+                    array_push($lesFilms,$film);
+                }
+            }
+        }else $lesFilms = Film::all();
+
         return view('listeFilms',compact('lesFilms','categories','laCategorie'));
     }
 
